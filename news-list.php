@@ -8,7 +8,7 @@
     <title>UWDP Potal Berita</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .bottomNav .educationPg {
+        .bottomNav .foodPg {
             background-color: purple;
         }
     </style>
@@ -20,7 +20,7 @@
         <!-- top Navigation -->
         <div class="topNav cf">
             <!-- logo -->
-            <div class="logo" onclick="location.href = 'index.php'"></div>
+            <div class="logo"></div>
             <!-- search -->
             <div class="search-container">
                 <div class="search-box">
@@ -69,11 +69,13 @@
                         <table class="berita-content" border="0" cellpadding="5" cellspacing="0">
                             <tr class="content-beritaTerkini">
                                 <td colspan="3">
-                                    <h2>EDUCATION NEWS</h2>
+                                    <h2>Hasil Pencarian <?php echo $_POST['searchKeyword'] ?></h2>
                                     <div class="dailyNews">
 
                                         <!-- disini kasik logic query -->
-                                        <?php $i = 0;
+                                        <?php
+                                            $i = 0;
+                                            $query = 'where like "%searchKeyword%"';
                                         ?>
 
                                         <?php while ($i < 10) : ?>
@@ -84,7 +86,7 @@
                                                 <div class="kontenDailyNews">
                                                     <table class="TableKontenDaily" border="0" cellspacing="0" cellpadding="5">
                                                         <tr>
-                                                            <td class="jenis">Education</td>
+                                                            <td class="jenis">Food</td>
 
                                                         </tr>
                                                         <tr>

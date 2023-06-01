@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UWDP Potal Berita</title>
     <link rel="stylesheet" href="style.css">
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
     <style>
         .bottomNav .homePg {
             background-color: purple;
@@ -20,18 +21,20 @@
         <!-- top Navigation -->
         <div class="topNav cf">
             <!-- logo -->
-            <div class="logo"></div>
+            <div class="logo" onclick="location.href = 'index.php'"></div>
             <!-- search -->
-            <div class="search-container">
-                <div class="search-box">
-                    <div class="search-input">
-                        <input type="text" class="input" placeholder="Search...." />
-                    </div>
-                    <div class="search-icon">
-                        <i class="fas fa-search"></i>
+            <form action="news-list.php" method="POST">
+                <div class="search-container">
+                    <div class="search-box">
+                        <div class="search-input">
+                            <input type="text" class="input" name="searchKeyword" placeholder="Search...." />
+                        </div>
+                        <div class="search-icon">
+                            <button type="submit" style='font-size:24px'><i class='fa fa-search'></i></button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <!-- verification -->
             <div class="leftTop-container">
                 <table class="leftTop" border="0" cellpadding="5" cellspacing="8">
@@ -73,7 +76,13 @@
                                 </td>
                                 <td class="header2">
                                     <marquee behavior="scroll" direction="left">
-                                        <h1>TITTLE</h1>
+                                        <h1>
+                                            <?php
+                                                $query = 'latest news';
+
+                                                echo $query;
+                                            ?>
+                                        </h1>
                                     </marquee>
                                 </td>
                                 <td class="header3">

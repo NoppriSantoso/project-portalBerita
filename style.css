@@ -92,8 +92,10 @@ a:active {
     padding: 8px;
 }
 
-
-
+.search-icon button {
+    background-color: transparent;
+    border: none;
+}
 
 .leftTop-container {
     float: left;
