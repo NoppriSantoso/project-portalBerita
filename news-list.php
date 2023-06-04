@@ -37,7 +37,7 @@
                 <table class="leftTop" border="0" cellpadding="5" cellspacing="8">
                     <tr class="leftTop-auth">
                         <td>
-                            <a href="#">LOGIN</a>
+                            <a href="authentication/login.php">LOGIN</a>
                         </td>
                         <td><a href="#">REGISTRASI</a></td>
                     </tr>

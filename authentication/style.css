@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(images/bg.jpg);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    width: 400px;
+    min-height: 400px;
+    background: #FFF;
+    border-radius: 15px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.15);
+    padding: 40px 30px;
+    opacity: 0.9;
+}
+.container input {
+    border: 1px solid;
+}
+.container .btn{
+    display: block;
+    width: 100%;
+    background: #6D3177;
+    padding: 7px 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.container .btn:hover{
+    display: block;
+    width: 100%;
+    background: #5D3E75;
+    padding: 7px 20px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+}
+.password-container {
+    position: relative;
+}
+#togglePassword {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(50%);
+}
+#toggleCPassword {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(57%);
+}
+@media (max-width: 430px) {
+    .container {
+        width: auto;
+    }
+}

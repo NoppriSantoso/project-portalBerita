@@ -37,13 +37,34 @@
             </form>
             <!-- verification -->
             <div class="leftTop-container">
+                <?php
+                    include 'connection.php';
+
+                    $userId = $_GET['userId'] ?? null;
+                    $sql = "select * from login where id_user = '$userId'";
+                    $result = $con->query($sql);
+                    $user = $result->fetch_object();
+                ?>
                 <table class="leftTop" border="0" cellpadding="5" cellspacing="8">
+                    <?php
+                        if ($result->num_rows > 0) {
+                    ?>
+                    <tr>
+                        <td><?php echo $user->nama ?></td>
+                    </tr>
+                    <?php
+                        }
+                        else {
+                    ?>
                     <tr class="leftTop-auth">
                         <td>
-                            <a href="login.php">LOGIN</a>
+                            <a href="authentication/login.php">LOGIN</a>
                         </td>
-                        <td><a href="register.php">REGISTRASI</a></td>
+                        <td><a href="authentication/register.php">REGISTRASI</a></td>
                     </tr>
+                    <?php
+                        }
+                    ?>
                     <tr class="leftTop-Time">
                         <td colspan="2" style="text-align: center;"> <?php echo date("l j F Y"); ?></td>
                     </tr>
