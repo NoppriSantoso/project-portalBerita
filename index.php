@@ -7,11 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UWDP Potal Berita</title>
     <link rel="stylesheet" href="style.css">
-<<<<<<< HEAD
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    link
-=======
->>>>>>> 0cc7bbb5db626eb62b8285f35992b6707e494185
     <style>
         .bottomNav .homePg {
             background-color: purple;
@@ -42,12 +38,12 @@
             <!-- verification -->
             <div class="leftTop-container">
                 <?php
-                    include 'connection.php';
+                include 'connection.php';
 
-                    $userId = $_GET['userId'] ?? null;
-                    $sql = "select * from login where id_user = '$userId'";
-                    $result = $con->query($sql);
-                    $user = $result->fetch_object();
+                $userId = $_GET['userId'] ?? null;
+                $sql = "select * from login where id_user = '$userId'";
+                $result = $con->query($sql);
+                $user = $result->fetch_object();
                 ?>
                 <table class="leftTop" border="0" cellpadding="5" cellspacing="8">
                     <?php if ($result->num_rows > 0) : ?>
@@ -96,16 +92,13 @@
                                 </td>
                                 <td class="header2">
                                     <marquee behavior="scroll" direction="left">
-<<<<<<< HEAD
-=======
                                         <h1>
                                             <?php
-                                                $query = 'latest news';
+                                            $query = 'latest news';
 
-                                                echo $query;
+                                            echo $query;
                                             ?>
                                         </h1>
->>>>>>> 0cc7bbb5db626eb62b8285f35992b6707e494185
                                     </marquee>
                                 </td>
                             </tr>

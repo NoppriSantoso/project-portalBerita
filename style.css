@@ -580,7 +580,8 @@ a:active {
 }
 
 .konten {
-    border: 1px solid black;
+    border: 1px solid lightgray;
+    box-shadow: 5px 8px 10px #eff0f6;
     width: 100%;
     margin-top: 10px;
     height: 200px;
@@ -683,9 +684,10 @@ a:active {
 .beritePopulercontent .rankBeritaPopuler {
     width: 30%;
     height: 80%;
-    background-color: #974E5B;
+    background-color: purple;
+    color: white;
     border-radius: 50%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin-right: 10px;
 }
 
@@ -701,7 +703,8 @@ a:active {
 .beritePopulercontent .kontenBeritaPopuler {
     width: 60%;
     background-color: white;
-    border: 1px solid black;
+    border: 1px solid lightblue;
+    box-shadow: 5px 8px 10px #eff0f6;
     border-radius: 10px;
     overflow: auto;
 }
