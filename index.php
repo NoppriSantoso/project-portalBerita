@@ -45,11 +45,16 @@
                 $result = $con->query($sql);
                 $user = $result->fetch_object();
                 ?>
-                <table class="leftTop" border="0" cellpadding="5" cellspacing="8">
+                <table class="leftTop" border="0" cellpadding="5" cellspacing="0">
                     <?php if ($result->num_rows > 0) : ?>
                         <tr class="leftTop-auth">
                             <td colspan="2">
-                                <a href="authentication/login.php"><?php echo $user->nama ?></a>
+                                <div class="userMenu">
+                                    <a class="user" href="#"><?php echo $user->nama ?></a>
+                                    <div class="dropdown">
+                                        <a href="authentication/login.php" onclick="return confirm('Do you want to logout?')">Logout</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     <?php else : ?>

@@ -47,13 +47,34 @@
             </div>
             <!-- verification -->
             <div class="leftTop-container">
-                <table class="leftTop" border="0" cellpadding="5" cellspacing="8">
-                    <tr class="leftTop-auth">
-                        <td>
-                            <a href="login.php">LOGIN</a>
-                        </td>
-                        <td><a href="register.php">REGISTRASI</a></td>
-                    </tr>
+                <?php
+                include 'connection.php';
+
+                $userId = $_GET['userId'] ?? null;
+                $sql = "select * from login where id_user = '$userId'";
+                $result = $con->query($sql);
+                $user = $result->fetch_object();
+                ?>
+                <table class="leftTop" border="0" cellpadding="5" cellspacing="0">
+                    <?php if ($result->num_rows > 0) : ?>
+                        <tr class="leftTop-auth">
+                            <td colspan="2">
+                                <div class="userMenu">
+                                    <a class="user" href="#"><?php echo $user->nama ?></a>
+                                    <div class="dropdown">
+                                        <a href="authentication/login.php" onclick="return confirm('Do you want to logout?')">Logout</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    <?php else : ?>
+                        <tr class="leftTop-auth">
+                            <td>
+                                <a href="authentication/login.php">LOGIN</a>
+                            </td>
+                            <td><a href="authentication/register.php">REGISTRASI</a></td>
+                        </tr>
+                    <?php endif; ?>
                     <tr class="leftTop-Time">
                         <td colspan="2" style="text-align: center;"> <?php echo date("l j F Y"); ?></td>
                     </tr>

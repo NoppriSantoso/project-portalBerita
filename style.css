@@ -112,9 +112,86 @@ a:active {
     font-size: 15px;
 }
 
-.leftTop .leftTop-auth td {
+.leftTop .leftTop-auth {
     padding: 0;
 }
+
+.leftTop .leftTop-auth td {
+    padding: 0;
+    /* width: 100%; */
+    /* border: 5px solid black; */
+    margin-bottom: 10px;
+}
+
+.leftTop .leftTop-auth .user {
+    font-size: 20px;
+    width: 50%;
+    margin: auto;
+    text-transform: uppercase;
+    /* border: 5px solid #6D3177; */
+    background-color: #6D3177;
+    color: #6D3177;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 10px;
+    display: block;
+}
+
+.userMenu {
+    position: relative;
+    width: 100%;
+    display: inline-block;
+    /* border: 1px solid red; */
+    margin: auto;
+
+    text-align: center;
+    vertical-align: middle;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    margin-top: 10px;
+    z-index: 1;
+    /* border: 1px solid red; */
+    margin: auto;
+    width: 50%;
+    left: 25%;
+    border-radius: 20px;
+    align-items: center;
+}
+
+.dropdown a {
+    background-color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border: 2px solid #eff0f6;
+}
+
+.dropdown a:hover {
+    background-color: #6D3177;
+    color: #eff0f6;
+    border-radius: 20px;
+}
+
+.userMenu:hover .dropdown {
+    display: block;
+}
+
+.leftTop .leftTop-auth .user:hover {
+    font-size: 20px;
+    text-transform: uppercase;
+    background-color: white;
+    border: 3px solid #6D3177;
+    color: #6D3177;
+    border-radius: 20px;
+    padding: 10px;
+    display: block;
+}
+
 
 .leftTop-auth a {
     width: 100%;
@@ -123,7 +200,10 @@ a:active {
 
 
 .leftTop-auth a:hover {
-    color: red;
+    color: white;
+    background-color: #6D3177;
+    border-radius: 25px;
+    padding: 10px;
 }
 
 .leftTop-Time {
