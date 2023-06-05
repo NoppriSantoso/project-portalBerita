@@ -7,9 +7,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UWDP Potal Berita</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
         .bottomNav .politicsPg {
             background-color: purple;
+        }
+
+        .content-beritaTerkini h2 {
+            border-top: unset;
+            margin: 20px auto 10px;
+            padding-top: unset;
+            padding-left: 20px;
+            font-size: 30px;
+            display: inline-block;
+            width: 100%;
+
         }
     </style>
 </head>
@@ -37,9 +50,9 @@
                 <table class="leftTop" border="0" cellpadding="5" cellspacing="8">
                     <tr class="leftTop-auth">
                         <td>
-                            <a href="#">LOGIN</a>
+                            <a href="login.php">LOGIN</a>
                         </td>
-                        <td><a href="#">REGISTRASI</a></td>
+                        <td><a href="register.php">REGISTRASI</a></td>
                     </tr>
                     <tr class="leftTop-Time">
                         <td colspan="2" style="text-align: center;"> <?php echo date("l j F Y"); ?></td>
@@ -65,7 +78,7 @@
         <div class="BodyContainer">
             <table class="BodyTable" border="0" cellpadding="5" cellspacing="5">
                 <tr>
-                    <td class="berita-container">
+                    <td class="berita-container bs">
                         <table class="berita-content" border="0" cellpadding="5" cellspacing="0">
                             <tr class="content-beritaTerkini">
                                 <td colspan="3">
@@ -89,7 +102,10 @@
                                                         </tr>
                                                         <tr>
                                                             <td class="judul row">
-                                                                <h3>Judul berita</h3>
+                                                                <a href="pageBerita.php">
+                                                                    <h3>Judul berita</h3>
+                                                                </a>
+
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -113,7 +129,7 @@
                             </tr>
                         </table>
                     </td>
-                    <td class="sideBar-container">
+                    <td class="sideBar-container bs">
                         <table class="viral-container" border="0" cellspacing="10" cellpadding="5">
                             <tr>
                                 <td class="JudulViral">
@@ -135,7 +151,9 @@
                                                 <table class="TableKontenBeritaPopuler" border="0" cellpadding="5" cellspacing="0">
                                                     <tr>
                                                         <td class="judul">
-                                                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laboriosam vel omnis praesentium tenetur nobis adipisci corrupti, velit nisi animi.</h3>
+                                                            <a href="pageBerita.php">
+                                                                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laboriosam vel omnis praesentium tenetur nobis adipisci corrupti, velit nisi animi.</h3>
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                     <tr>

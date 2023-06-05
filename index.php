@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UWDP Potal Berita</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    link
     <style>
         .bottomNav .homePg {
             background-color: purple;
@@ -37,9 +39,9 @@
                 <table class="leftTop" border="0" cellpadding="5" cellspacing="8">
                     <tr class="leftTop-auth">
                         <td>
-                            <a href="login.php">LOGIN</a>
+                            <a href="authentication\login.php">LOGIN</a>
                         </td>
-                        <td><a href="register.php">REGISTRASI</a></td>
+                        <td><a href="authentication\register.php">REGISTRASI</a></td>
                     </tr>
                     <tr class="leftTop-Time">
                         <td colspan="2" style="text-align: center;"> <?php echo date("l j F Y"); ?></td>
@@ -65,7 +67,7 @@
         <div class="BodyContainer">
             <table class="BodyTable" border="0" cellpadding="5" cellspacing="5">
                 <tr>
-                    <td class="berita-container">
+                    <td class="berita-container bs">
                         <table class="berita-content" border="0" cellpadding="5" cellspacing="0">
                             <tr class="content-header">
                                 <td class="header1">
@@ -73,18 +75,17 @@
                                 </td>
                                 <td class="header2">
                                     <marquee behavior="scroll" direction="left">
-                                        <h1>TITTLE</h1>
+                                        <?php $arrJenis = array("Lifestyle", "Sport", "Education", "Health", "Politics", "Food");
+                                        $rand = $arrJenis[array_rand($arrJenis)]; ?>
+                                        <h1 id="judulHeader2"><?= $rand; ?></h1>
                                     </marquee>
-                                </td>
-                                <td class="header3">
-                                    <a href="#" class="linkPrev"></a>
-                                    <a href="#" class="linkNext"></a>
                                 </td>
                             </tr>
                             <tr class="content-topberita">
                                 <td colspan="3">
                                     <div class="slider-wrapper">
                                         <div class="slider">
+                                            <div class="vignetteLayer"></div>
                                             <div class="sliderContentHeadline">
                                                 <div class="headContainer">
                                                     <div class="jenis">
@@ -137,7 +138,10 @@
                                                         </tr>
                                                         <tr>
                                                             <td class="judul row">
-                                                                <h3>Judul berita</h3>
+                                                                <a href="pageBerita.php">
+                                                                    <h3>Judul berita</h3>
+                                                                </a>
+
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -161,7 +165,7 @@
                             </tr>
                         </table>
                     </td>
-                    <td class="sideBar-container">
+                    <td class="sideBar-container bs">
                         <table class="viral-container" border="0" cellspacing="10" cellpadding="5">
                             <tr>
                                 <td class="JudulViral">
@@ -183,7 +187,9 @@
                                                 <table class="TableKontenBeritaPopuler" border="0" cellpadding="5" cellspacing="0">
                                                     <tr>
                                                         <td class="judul">
-                                                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laboriosam vel omnis praesentium tenetur nobis adipisci corrupti, velit nisi animi.</h3>
+                                                            <a href="pageBerita.php">
+                                                                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laboriosam vel omnis praesentium tenetur nobis adipisci corrupti, velit nisi animi.</h3>
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                     <tr>
