@@ -32,7 +32,7 @@
         <!-- top Navigation -->
         <div class="topNav cf">
             <!-- logo -->
-            <div class="logo"></div>
+            <div class="logo" onclick="location.href = 'index.php'"></div>
             <!-- search -->
             <div class="search-container">
                 <div class="search-box">

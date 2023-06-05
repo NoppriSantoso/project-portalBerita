@@ -14,7 +14,7 @@
 
 <body>
     <div class="container">
-        <form action="" method="post">
+        <form action="../checkUser.php" method="post">
             <div class="col-12">
                 <h3 class="text-center" style="font-size: 2rem; font-weight: 800;">LOGIN</h3>
                 <label>Username</label><br>

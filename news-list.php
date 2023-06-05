@@ -7,13 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UWDP Potal Berita</title>
     <link rel="stylesheet" href="style.css">
-<<<<<<< HEAD
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    link
-=======
->>>>>>> 0cc7bbb5db626eb62b8285f35992b6707e494185
     <style>
-        .bottomNav .homePg {
+        .bottomNav .foodPg {
             background-color: purple;
         }
     </style>
@@ -25,45 +20,27 @@
         <!-- top Navigation -->
         <div class="topNav cf">
             <!-- logo -->
-            <div class="logo" onclick="location.href = 'index.php'"></div>
+            <div class="logo"></div>
             <!-- search -->
-            <form action="news-list.php" method="POST">
-                <div class="search-container">
-                    <div class="search-box">
-                        <div class="search-input">
-                            <input type="text" class="input" name="searchKeyword" placeholder="Search...." />
-                        </div>
-                        <div class="search-icon">
-                            <button type="submit" style='font-size:24px'><i class='fa fa-search'></i></button>
-                        </div>
+            <div class="search-container">
+                <div class="search-box">
+                    <div class="search-input">
+                        <input type="text" class="input" placeholder="Search...." />
+                    </div>
+                    <div class="search-icon">
+                        <i class="fas fa-search"></i>
                     </div>
                 </div>
-            </form>
+            </div>
             <!-- verification -->
             <div class="leftTop-container">
-                <?php
-                    include 'connection.php';
-
-                    $userId = $_GET['userId'] ?? null;
-                    $sql = "select * from login where id_user = '$userId'";
-                    $result = $con->query($sql);
-                    $user = $result->fetch_object();
-                ?>
                 <table class="leftTop" border="0" cellpadding="5" cellspacing="8">
-                    <?php if ($result->num_rows > 0) : ?>
-                        <tr class="leftTop-auth">
-                            <td colspan="2">
-                                <a href="authentication/login.php"><?php echo $user->nama ?></a>
-                            </td>
-                        </tr>
-                    <?php else : ?>
-                        <tr class="leftTop-auth">
-                            <td>
-                                <a href="authentication/login.php">LOGIN</a>
-                            </td>
-                            <td><a href="authentication/register.php">REGISTRASI</a></td>
-                        </tr>
-                    <?php endif; ?>
+                    <tr class="leftTop-auth">
+                        <td>
+                            <a href="authentication/login.php">LOGIN</a>
+                        </td>
+                        <td><a href="#">REGISTRASI</a></td>
+                    </tr>
                     <tr class="leftTop-Time">
                         <td colspan="2" style="text-align: center;"> <?php echo date("l j F Y"); ?></td>
                     </tr>
@@ -88,72 +65,20 @@
         <div class="BodyContainer">
             <table class="BodyTable" border="0" cellpadding="5" cellspacing="5">
                 <tr>
-                    <td class="berita-container bs">
+                    <td class="berita-container">
                         <table class="berita-content" border="0" cellpadding="5" cellspacing="0">
-                            <tr class="content-header">
-                                <td class="header1">
-                                    <div class="breakingNews">BREAKING NEWS</div>
-                                </td>
-                                <td class="header2">
-                                    <marquee behavior="scroll" direction="left">
-<<<<<<< HEAD
-=======
-                                        <h1>
-                                            <?php
-                                                $query = 'latest news';
-
-                                                echo $query;
-                                            ?>
-                                        </h1>
->>>>>>> 0cc7bbb5db626eb62b8285f35992b6707e494185
-                                    </marquee>
-                                </td>
-                            </tr>
-                            <tr class="content-topberita">
-                                <td colspan="3">
-                                    <div class="slider-wrapper">
-                                        <div class="slider">
-                                            <div class="vignetteLayer"></div>
-                                            <div class="sliderContentHeadline">
-                                                <div class="headContainer">
-                                                    <div class="jenis">
-                                                        <p>JENIS</p>
-                                                    </div>
-                                                    <div class="waktu">
-
-                                                        <!-- untuk ini dikasi logic juga -->
-                                                        <p><?php echo date("l j F Y H:m:s"); ?></p>
-
-                                                    </div>
-                                                </div>
-                                                <div class="tittleContainer">
-                                                    <h2>HEADLINE JUDUL BERITA</h2>
-                                                </div>
-                                            </div>
-                                            <img id="slide-1" src="img/fungsi-fakta-dalam-berita.jpeg" alt="" />
-                                            <img id="slide-2" src="img/fungsi-fakta-dalam-berita.jpeg" alt="" />
-                                            <img id="slide-3" src="img/fungsi-fakta-dalam-berita.jpeg" alt="" />
-                                        </div>
-                                        <div class="slider-nav">
-                                            <a href="#slide-1"></a>
-                                            <a href="#slide-2"></a>
-                                            <a href="#slide-3"></a>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
                             <tr class="content-beritaTerkini">
                                 <td colspan="3">
-                                    <h2>BERITA TERKINI</h2>
+                                    <h2>Hasil Pencarian <?php echo $_POST['searchKeyword'] ?></h2>
                                     <div class="dailyNews">
 
                                         <!-- disini kasik logic query -->
-                                        <?php $i = 0;
+                                        <?php
+                                            $i = 0;
+                                            $query = 'where like "%searchKeyword%"';
                                         ?>
 
                                         <?php while ($i < 10) : ?>
-                                            <?php $arrJenis = array("Lifestyle", "Sport", "Education", "Health", "Politics", "Food");
-                                            $rand = $arrJenis[array_rand($arrJenis)]; ?>
                                             <div class="konten 1">
                                                 <div class="gmbrDailyNews">
                                                     <img src="img/stars.png" alt="">
@@ -161,15 +86,12 @@
                                                 <div class="kontenDailyNews">
                                                     <table class="TableKontenDaily" border="0" cellspacing="0" cellpadding="5">
                                                         <tr>
-                                                            <td class="jenis"><?= $rand; ?></td>
+                                                            <td class="jenis">Food</td>
 
                                                         </tr>
                                                         <tr>
                                                             <td class="judul row">
-                                                                <a href="pageBerita.php">
-                                                                    <h3>Judul berita</h3>
-                                                                </a>
-
+                                                                <h3>Judul berita</h3>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -193,7 +115,7 @@
                             </tr>
                         </table>
                     </td>
-                    <td class="sideBar-container bs">
+                    <td class="sideBar-container">
                         <table class="viral-container" border="0" cellspacing="10" cellpadding="5">
                             <tr>
                                 <td class="JudulViral">
@@ -215,9 +137,7 @@
                                                 <table class="TableKontenBeritaPopuler" border="0" cellpadding="5" cellspacing="0">
                                                     <tr>
                                                         <td class="judul">
-                                                            <a href="pageBerita.php">
-                                                                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laboriosam vel omnis praesentium tenetur nobis adipisci corrupti, velit nisi animi.</h3>
-                                                            </a>
+                                                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laboriosam vel omnis praesentium tenetur nobis adipisci corrupti, velit nisi animi.</h3>
                                                         </td>
                                                     </tr>
                                                     <tr>
