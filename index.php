@@ -99,9 +99,11 @@
                                     <marquee behavior="scroll" direction="left">
                                         <h1>
                                             <?php
-                                            $query = 'latest news';
+                                            $sql = 'select judul_berita, jenis_berita, tgl_publish from tbl_berita order by tgl_publish desc';
+                                            $result = $con->query($sql);
+                                            $berita = $result->fetch_object();
 
-                                            echo $query;
+                                            echo $berita->jenis_berita . ' | ' . $berita->judul_berita;
                                             ?>
                                         </h1>
                                     </marquee>
