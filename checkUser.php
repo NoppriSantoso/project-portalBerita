@@ -3,18 +3,20 @@
     include 'connection.php';
 
     $username = $_POST['username'];
-    $password = $_POST['password'];
+    $password = hash('sha256', $_POST['password']);
 
-    $query = "select * from login where username = '$username' and password = '$password'";
+    $query = "select * from tbl_login where username = '$username' and password = '$password'";
     $result = $con->query($query);
     $user = $result->fetch_object();
 
     if ($result->num_rows > 0) {
-        if ($user->role === 'user') {
-            header("Location: index.php?userId=$user->id_user");
+        setcookie('user', $user->id_user, time() + (86400 * 30), "/");
+
+        if ($user->role === 'User') {
+            header("Location: index.php");
         }
-        else if ($user->role === 'admin') {
-            header("Location: index.php?userId=$userId");
+        else if ($user->role === 'Admin') {
+            header("Location: index.php");
         }
     }
     else {

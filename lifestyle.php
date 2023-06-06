@@ -51,7 +51,7 @@
                 include 'connection.php';
 
                 $userId = $_GET['userId'] ?? null;
-                $sql = "select * from login where id_user = '$userId'";
+                $sql = "select * from tbl_login where id_user = '$userId'";
                 $result = $con->query($sql);
                 $user = $result->fetch_object();
                 ?>

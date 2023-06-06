@@ -38,19 +38,19 @@
             <!-- verification -->
             <div class="leftTop-container">
                 <?php
-                include 'connection.php';
+                    include 'connection.php';
 
-                $userId = $_GET['userId'] ?? null;
-                $sql = "select * from login where id_user = '$userId'";
-                $result = $con->query($sql);
-                $user = $result->fetch_object();
+                    $userId = $_COOKIE['user'];
+                    $sql = "select * from tbl_login where id_user = '$userId'";
+                    $result = $con->query($sql);
+                    $user = $result->fetch_object();
                 ?>
                 <table class="leftTop" border="0" cellpadding="5" cellspacing="0">
                     <?php if ($result->num_rows > 0) : ?>
                         <tr class="leftTop-auth">
                             <td colspan="2">
                                 <div class="userMenu">
-                                    <a class="user" href="#"><?php echo $user->nama ?></a>
+                                    <a class="user" href="#"><?php echo $user->username ?></a>
                                     <div class="dropdown">
                                         <a href="authentication/login.php" onclick="return confirm('Do you want to logout?')">Logout</a>
                                     </div>
