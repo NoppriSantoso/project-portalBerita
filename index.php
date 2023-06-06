@@ -148,26 +148,31 @@
                                     <div class="dailyNews">
 
                                         <!-- disini kasik logic query -->
-                                        <?php $i = 0;
+                                        <?php
+                                        $sql = 'select a.*, b.kode_author, b.nama_author from tbl_berita a join tbl_author b on a.kode_author = b.kode_author order by tgl_publish desc';
+                                        $result = $con->query($sql);
+
+                                        $i = 0;
                                         ?>
 
-                                        <?php while ($i < 10) : ?>
-                                            <?php $arrJenis = array("Lifestyle", "Sport", "Education", "Health", "Politics", "Food");
-                                            $rand = $arrJenis[array_rand($arrJenis)]; ?>
+                                        <?php while ($i < $result->num_rows) : ?>
+                                            <?php
+                                                $berita = $result->fetch_object();
+                                            ?>
                                             <div class="konten 1">
                                                 <div class="gmbrDailyNews">
-                                                    <img src="img/stars.png" alt="">
+                                                    <img src="img/<?= $berita->gambar ?>" alt="<?= $berita->gambar ?>">
                                                 </div>
                                                 <div class="kontenDailyNews">
                                                     <table class="TableKontenDaily" border="0" cellspacing="0" cellpadding="5">
                                                         <tr>
-                                                            <td class="jenis"><?= $rand; ?></td>
+                                                            <td class="jenis"><?= $berita->jenis_berita; ?></td>
 
                                                         </tr>
                                                         <tr>
                                                             <td class="judul row">
                                                                 <a href="pageBerita.php">
-                                                                    <h3>Judul berita</h3>
+                                                                    <h3><?= $berita->judul_berita ?></h3>
                                                                 </a>
 
                                                             </td>
@@ -175,12 +180,12 @@
                                                         <tr>
 
                                                             <td class="author row">
-                                                                author
+                                                                <?php echo $berita->nama_author; ?>
                                                             </td>
                                                         </tr>
                                                         <tr>
 
-                                                            <td class="waktu row"> <?php echo date("l j F Y"); ?></td>
+                                                            <td class="waktu row"> <?= date("l j F Y", strtotime($berita->tgl_publish)); ?></td>
                                                         </tr>
                                                     </table>
                                                 </div>
