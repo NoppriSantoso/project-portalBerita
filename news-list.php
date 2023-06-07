@@ -1,3 +1,8 @@
+<?php
+    include 'connection.php';
+
+    $keyword = $_POST['searchKeyword'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,31 +25,82 @@
         <!-- top Navigation -->
         <div class="topNav cf">
             <!-- logo -->
-            <div class="logo"></div>
+            <div class="logo" onclick="location.href = 'index.php'"></div>
             <!-- search -->
-            <div class="search-container">
-                <div class="search-box">
-                    <div class="search-input">
-                        <input type="text" class="input" placeholder="Search...." />
-                    </div>
-                    <div class="search-icon">
-                        <i class="fas fa-search"></i>
+            <form action="news-list.php" method="POST">
+                <div class="search-container">
+                    <div class="search-box">
+                        <div class="search-input">
+                            <input type="text" class="input" name="searchKeyword" placeholder="Search...." />
+                        </div>
+                        <div class="search-icon">
+                            <button type="submit" style='font-size:24px'><i class='fa fa-search'></i></button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <!-- verification -->
             <div class="leftTop-container">
-                <table class="leftTop" border="0" cellpadding="5" cellspacing="8">
-                    <tr class="leftTop-auth">
-                        <td>
-                            <a href="authentication/login.php">LOGIN</a>
-                        </td>
-                        <td><a href="#">REGISTRASI</a></td>
-                    </tr>
-                    <tr class="leftTop-Time">
-                        <td colspan="2" style="text-align: center;"> <?php echo date("l j F Y"); ?></td>
-                    </tr>
-                </table>
+                <?php
+                try {
+                    $userId = isset($_COOKIE['user']) ? $_COOKIE['user'] : null;
+
+                    if ($userId !== null) {
+                        $sql = "SELECT * FROM tbl_login WHERE id_user = '$userId'";
+                        $result = $con->query($sql);
+                        $user = $result->fetch_object();
+
+                        if ($result->num_rows > 0) :
+                ?>
+                            <table class="leftTop" border="0" cellpadding="5" cellspacing="0">
+                                <tr class="leftTop-auth">
+                                    <td colspan="2">
+                                        <div class="userMenu">
+                                            <a class="user" href="#"><?php echo $user->username ?></a>
+                                            <div class="dropdown">
+                                                <a href="authentication/login.php" onclick="return confirm('Do you want to logout?')">Logout</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="leftTop-Time">
+                                    <td colspan="2" style="text-align: center;"><?php echo date("l j F Y"); ?></td>
+                                </tr>
+                            </table>
+                        <?php else : ?>
+                            <table class="leftTop" border="0" cellpadding="5" cellspacing="0">
+                                <tr class="leftTop-auth">
+                                    <td>
+                                        <a href="authentication/login.php">LOGIN</a>
+                                    </td>
+                                    <td><a href="authentication/register.php">REGISTRASI</a></td>
+                                </tr>
+                                <tr class="leftTop-Time">
+                                    <td colspan="2" style="text-align: center;"><?php echo date("l j F Y"); ?></td>
+                                </tr>
+                            </table>
+                        <?php endif;
+                    } else {
+                        ?>
+                        <table class="leftTop" border="0" cellpadding="5" cellspacing="0">
+                            <tr class="leftTop-auth">
+                                <td>
+                                    <a href="authentication/login.php">LOGIN</a>
+                                </td>
+                                <td><a href="authentication/register.php">REGISTRASI</a></td>
+                            </tr>
+                            <tr class="leftTop-Time">
+                                <td colspan="2" style="text-align: center;"><?php echo date("l j F Y"); ?></td>
+                            </tr>
+                        </table>
+                <?php
+                    }
+                } catch (\Throwable $th) {
+                    // Handle the error gracefully
+                    // You can log the error, display a friendly message, or take any other appropriate action
+                    echo "An error occurred: " . $th->getMessage();
+                }
+                ?>
             </div>
         </div>
 
@@ -69,40 +125,49 @@
                         <table class="berita-content" border="0" cellpadding="5" cellspacing="0">
                             <tr class="content-beritaTerkini">
                                 <td colspan="3">
-                                    <h2>Hasil Pencarian <?php echo $_POST['searchKeyword'] ?></h2>
+                                    <h2>Hasil Pencarian <?php echo $keyword ?></h2>
                                     <div class="dailyNews">
 
                                         <!-- disini kasik logic query -->
                                         <?php
-                                            $i = 0;
-                                            $query = 'where like "%searchKeyword%"';
+                                            $sql = "select * from tbl_berita where (judul_berita like '%$keyword%' or isi_berita like '%$keyword%' or jenis_berita like '%$keyword%') order by tgl_publish desc";
+                                            $result = $con->query($sql);
+
+                                            $i = 1;
                                         ?>
 
-                                        <?php while ($i < 10) : ?>
-                                            <div class="konten 1">
+                                        <?php
+                                            if ($result->num_rows === 0)
+                                        ?>
+                                            <h3>Pencarian tidak ditemukan...</h3>
+                                        <?php
+                                        ?>
+
+                                        <?php while ($i <= $result->num_rows) : ?>
+                                            <?php $berita = $result->fetch_object(); ?>
+                                            <div class="konten <?= $i ?>" onclick="location.href = 'pageBerita.php?idBerita=<?php echo $berita->id_berita?>'">
                                                 <div class="gmbrDailyNews">
-                                                    <img src="img/stars.png" alt="">
+                                                    <img src="img/<?= $berita->gambar ?>" alt="<?= $berita->gambar ?>">
                                                 </div>
                                                 <div class="kontenDailyNews">
                                                     <table class="TableKontenDaily" border="0" cellspacing="0" cellpadding="5">
                                                         <tr>
-                                                            <td class="jenis">Food</td>
-
+                                                            <td class="jenis"><?= $berita->jenis_berita; ?></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="judul row">
-                                                                <h3>Judul berita</h3>
+                                                                <a href="pageBerita.php">
+                                                                    <h3><?= $berita->judul_berita ?></h3>
+                                                                </a>
                                                             </td>
                                                         </tr>
                                                         <tr>
-
                                                             <td class="author row">
-                                                                author
+                                                                <?php echo $berita->nama_author; ?>
                                                             </td>
                                                         </tr>
                                                         <tr>
-
-                                                            <td class="waktu row"> <?php echo date("l j F Y"); ?></td>
+                                                            <td class="waktu row"> <?= date("l j F Y", strtotime($berita->tgl_publish)); ?></td>
                                                         </tr>
                                                     </table>
                                                 </div>
@@ -126,9 +191,15 @@
                                 <td class="beritePopulercontent">
 
                                     <!-- disini kasik logic query -->
-                                    <?php $i = 0; ?>
+                                    <?php
+                                        $sql = 'select id_berita, judul_berita, popularity from tbl_berita order by popularity desc limit 10';
+                                        $result = $con->query($sql);
 
-                                    <?php while ($i < 10) : ?>
+                                        $i = 0;
+                                    ?>
+
+                                    <?php while ($i < $result->num_rows) : ?>
+                                        <?php $berita = $result->fetch_object(); ?>
                                         <div class="top">
                                             <div class="rankBeritaPopuler">
                                                 <p>#<?= $i + 1; ?></p>
@@ -137,12 +208,14 @@
                                                 <table class="TableKontenBeritaPopuler" border="0" cellpadding="5" cellspacing="0">
                                                     <tr>
                                                         <td class="judul">
-                                                            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laboriosam vel omnis praesentium tenetur nobis adipisci corrupti, velit nisi animi.</h3>
+                                                            <a href="pageBerita.php?idBerita=<?php echo $berita->id_berita?>">
+                                                                <h3><?= $berita->judul_berita ?></h3>
+                                                            </a>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="view">
-                                                            dibaca : <?php echo "2" ?>
+                                                            dibaca : <?= $berita->popularity ?>
                                                         </td>
                                                     </tr>
                                                 </table>

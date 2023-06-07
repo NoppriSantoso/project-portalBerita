@@ -148,27 +148,33 @@
                                     <div class="slider-wrapper">
 
                                         <div class="slider">
-                                            <?php $arrGambar = ['sea.jpg', 'da26e95e-d6b2-4ebb-ac6c-5dcf7143802f.jpg', 'uJ_R86HgDXQ (1).jpg', 'stars.png', 'bghealth.png'] ?>
-                                            <?php for ($i = 0; $i < 5; $i++) : ?>
-                                                <div class="imgCover" id="slide-<?= $i; ?>">
+                                            <?php
+                                                $sql = 'select * from tbl_berita order by rand() limit 5';
+                                                $result = $con->query($sql);
+                                            ?>
+                                            <?php for ($i = 1; $i <= $result->num_rows; $i++) : ?>
+                                                <?php
+                                                    $berita = $result->fetch_object();
+                                                ?>
+                                                <div class="imgCover" id="slide-<?= $i; ?>" onclick="location.href = 'pageBerita.php?idBerita=<?php echo $berita->id_berita?>'">
 
-                                                    <img src="img/<?= $arrGambar[$i]; ?>" alt="">
+                                                    <img src="img/<?= $berita->gambar ?>" alt="">
 
                                                     <div class="vignetteLayer"></div>
                                                     <div class="sliderContentHeadline">
                                                         <div class="headContainer">
                                                             <div class="jenis">
-                                                                <p>JENIS</p>
+                                                                <p><?= $berita->jenis_berita ?></p>
                                                             </div>
                                                             <div class="waktu">
 
                                                                 <!-- untuk ini dikasi logic juga -->
-                                                                <p><?php echo date("l j F Y H:m:s"); ?></p>
+                                                                <p><?php echo date("l j F Y H:m:s", strtotime($berita->tgl_publish)); ?></p>
 
                                                             </div>
                                                         </div>
                                                         <div class="tittleContainer">
-                                                            <h2>HEADLINE NOMOR <?= $i + 1; ?></h2>
+                                                            <h2><?= $berita->judul_berita ?></h2>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -177,10 +183,8 @@
 
                                         <!-- slider nav -->
                                         <div class="slider-nav">
-                                            <?php for ($i = 0; $i < 5; $i++) : ?>
-
+                                            <?php for ($i = 1; $i <= $result->num_rows; $i++) : ?>
                                                 <a href="#slide-<?= $i; ?>"></a>
-
                                             <?php endfor; ?>
                                         </div>
                                     </div>
@@ -196,17 +200,15 @@
 
                                         <!-- disini kasik logic query -->
                                         <?php
-                                        $sql = 'select a.*, b.kode_author, b.nama_author from tbl_berita a join tbl_author b on a.kode_author = b.kode_author order by tgl_publish desc';
-                                        $result = $con->query($sql);
+                                            $sql = 'select a.*, b.kode_author, b.nama_author from tbl_berita a join tbl_author b on a.kode_author = b.kode_author order by tgl_publish desc';
+                                            $result = $con->query($sql);
 
-                                        $i = 0;
+                                            $i = 1;
                                         ?>
 
-                                        <?php while ($i < $result->num_rows) : ?>
-                                            <?php
-                                            $berita = $result->fetch_object();
-                                            ?>
-                                            <div class="konten 1">
+                                        <?php while ($i <= $result->num_rows) : ?>
+                                            <?php $berita = $result->fetch_object(); ?>
+                                            <div class="konten <?= $i ?>" onclick="location.href = 'pageBerita.php?idBerita=<?php echo $berita->id_berita?>'">
                                                 <div class="gmbrDailyNews">
                                                     <img src="img/<?= $berita->gambar ?>" alt="<?= $berita->gambar ?>">
                                                 </div>
@@ -214,24 +216,20 @@
                                                     <table class="TableKontenDaily" border="0" cellspacing="0" cellpadding="5">
                                                         <tr>
                                                             <td class="jenis"><?= $berita->jenis_berita; ?></td>
-
                                                         </tr>
                                                         <tr>
                                                             <td class="judul row">
                                                                 <a href="pageBerita.php">
                                                                     <h3><?= $berita->judul_berita ?></h3>
                                                                 </a>
-
                                                             </td>
                                                         </tr>
                                                         <tr>
-
                                                             <td class="author row">
                                                                 <?php echo $berita->nama_author; ?>
                                                             </td>
                                                         </tr>
                                                         <tr>
-
                                                             <td class="waktu row"> <?= date("l j F Y", strtotime($berita->tgl_publish)); ?></td>
                                                         </tr>
                                                     </table>
@@ -256,9 +254,15 @@
                                 <td class="beritePopulercontent">
 
                                     <!-- disini kasik logic query -->
-                                    <?php $i = 0; ?>
+                                    <?php
+                                        $sql = 'select id_berita, judul_berita, popularity from tbl_berita order by popularity desc limit 10';
+                                        $result = $con->query($sql);
 
-                                    <?php while ($i < 10) : ?>
+                                        $i = 0;
+                                    ?>
+
+                                    <?php while ($i < $result->num_rows) : ?>
+                                        <?php $berita = $result->fetch_object(); ?>
                                         <div class="top">
                                             <div class="rankBeritaPopuler">
                                                 <p>#<?= $i + 1; ?></p>
@@ -267,14 +271,14 @@
                                                 <table class="TableKontenBeritaPopuler" border="0" cellpadding="5" cellspacing="0">
                                                     <tr>
                                                         <td class="judul">
-                                                            <a href="pageBerita.php">
-                                                                <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero laboriosam vel omnis praesentium tenetur nobis adipisci corrupti, velit nisi animi.</h3>
+                                                            <a href="pageBerita.php?idBerita=<?php echo $berita->id_berita?>">
+                                                                <h3><?= $berita->judul_berita ?></h3>
                                                             </a>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="view">
-                                                            dibaca : <?php echo "2" ?>
+                                                            dibaca : <?= $berita->popularity ?>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -298,9 +302,9 @@
                     <td colspan="6">
                         <div class="medsos">
                             <a href="#twitter.com" class="twitter"></a>
-                            <a href="instagram.com" class="insta"></a>
-                            <a href="facebook.com" class="fb"></a>
-                            <a href="telegram.com" class="tele"></a>
+                            <a href="#instagram.com" class="insta"></a>
+                            <a href="#facebook.com" class="fb"></a>
+                            <a href="#telegram.com" class="tele"></a>
                             <a href="#" class="utube"></a>
                         </div>
                     </td>

@@ -1,6 +1,6 @@
 <?php
 
-    $roleEnumAdmin = 'Admin';
-    $roleEnumUser = 'User';
+    $roleEnumAdmin = 'admin';
+    $roleEnumUser = 'user';
 
 ?>

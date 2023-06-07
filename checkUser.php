@@ -1,6 +1,7 @@
 <?php
 
     include 'connection.php';
+    include 'roleEnum.php';
 
     $username = $_POST['username'];
     $password = hash('sha256', $_POST['password']);
@@ -12,10 +13,10 @@
     if ($result->num_rows > 0) {
         setcookie('user', $user->id_user, time() + (86400 * 30), "/");
 
-        if ($user->role === 'User') {
+        if ($user->role === $roleEnumUser) {
             header("Location: index.php");
         }
-        else if ($user->role === 'Admin') {
+        else if ($user->role === $roleEnumAdmin) {
             header("Location: index.php");
         }
     }
