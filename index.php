@@ -38,37 +38,67 @@
             <!-- verification -->
             <div class="leftTop-container">
                 <?php
-                    include 'connection.php';
+                include 'connection.php';
 
-                    $userId = $_COOKIE['user'];
-                    $sql = "select * from tbl_login where id_user = '$userId'";
-                    $result = $con->query($sql);
-                    $user = $result->fetch_object();
+                try {
+                    $userId = isset($_COOKIE['user']) ? $_COOKIE['user'] : null;
+
+                    if ($userId !== null) {
+                        $sql = "SELECT * FROM tbl_login WHERE id_user = '$userId'";
+                        $result = $con->query($sql);
+                        $user = $result->fetch_object();
+
+                        if ($result->num_rows > 0) :
                 ?>
-                <table class="leftTop" border="0" cellpadding="5" cellspacing="0">
-                    <?php if ($result->num_rows > 0) : ?>
-                        <tr class="leftTop-auth">
-                            <td colspan="2">
-                                <div class="userMenu">
-                                    <a class="user" href="#"><?php echo $user->username ?></a>
-                                    <div class="dropdown">
-                                        <a href="authentication/login.php" onclick="return confirm('Do you want to logout?')">Logout</a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    <?php else : ?>
-                        <tr class="leftTop-auth">
-                            <td>
-                                <a href="authentication/login.php">LOGIN</a>
-                            </td>
-                            <td><a href="authentication/register.php">REGISTRASI</a></td>
-                        </tr>
-                    <?php endif; ?>
-                    <tr class="leftTop-Time">
-                        <td colspan="2" style="text-align: center;"> <?php echo date("l j F Y"); ?></td>
-                    </tr>
-                </table>
+                            <table class="leftTop" border="0" cellpadding="5" cellspacing="0">
+                                <tr class="leftTop-auth">
+                                    <td colspan="2">
+                                        <div class="userMenu">
+                                            <a class="user" href="#"><?php echo $user->username ?></a>
+                                            <div class="dropdown">
+                                                <a href="authentication/login.php" onclick="return confirm('Do you want to logout?')">Logout</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="leftTop-Time">
+                                    <td colspan="2" style="text-align: center;"><?php echo date("l j F Y"); ?></td>
+                                </tr>
+                            </table>
+                        <?php else : ?>
+                            <table class="leftTop" border="0" cellpadding="5" cellspacing="0">
+                                <tr class="leftTop-auth">
+                                    <td>
+                                        <a href="authentication/login.php">LOGIN</a>
+                                    </td>
+                                    <td><a href="authentication/register.php">REGISTRASI</a></td>
+                                </tr>
+                                <tr class="leftTop-Time">
+                                    <td colspan="2" style="text-align: center;"><?php echo date("l j F Y"); ?></td>
+                                </tr>
+                            </table>
+                        <?php endif;
+                    } else {
+                        ?>
+                        <table class="leftTop" border="0" cellpadding="5" cellspacing="0">
+                            <tr class="leftTop-auth">
+                                <td>
+                                    <a href="authentication/login.php">LOGIN</a>
+                                </td>
+                                <td><a href="authentication/register.php">REGISTRASI</a></td>
+                            </tr>
+                            <tr class="leftTop-Time">
+                                <td colspan="2" style="text-align: center;"><?php echo date("l j F Y"); ?></td>
+                            </tr>
+                        </table>
+                <?php
+                    }
+                } catch (\Throwable $th) {
+                    // Handle the error gracefully
+                    // You can log the error, display a friendly message, or take any other appropriate action
+                    echo "An error occurred: " . $th->getMessage();
+                }
+                ?>
             </div>
         </div>
 
@@ -91,6 +121,8 @@
                 <tr>
                     <td class="berita-container bs">
                         <table class="berita-content" border="0" cellpadding="5" cellspacing="0">
+
+                            <!-- judul bergerak paling atas -->
                             <tr class="content-header">
                                 <td class="header1">
                                     <div class="breakingNews">BREAKING NEWS</div>
@@ -109,39 +141,54 @@
                                     </marquee>
                                 </td>
                             </tr>
+
+                            <!-- headline berita breaking news -->
                             <tr class="content-topberita">
                                 <td colspan="3">
                                     <div class="slider-wrapper">
+
                                         <div class="slider">
-                                            <div class="vignetteLayer"></div>
-                                            <div class="sliderContentHeadline">
-                                                <div class="headContainer">
-                                                    <div class="jenis">
-                                                        <p>JENIS</p>
-                                                    </div>
-                                                    <div class="waktu">
+                                            <?php $arrGambar = ['sea.jpg', 'da26e95e-d6b2-4ebb-ac6c-5dcf7143802f.jpg', 'uJ_R86HgDXQ (1).jpg', 'stars.png', 'bghealth.png'] ?>
+                                            <?php for ($i = 0; $i < 5; $i++) : ?>
+                                                <div class="imgCover" id="slide-<?= $i; ?>">
 
-                                                        <!-- untuk ini dikasi logic juga -->
-                                                        <p><?php echo date("l j F Y H:m:s"); ?></p>
+                                                    <img src="img/<?= $arrGambar[$i]; ?>" alt="">
 
+                                                    <div class="vignetteLayer"></div>
+                                                    <div class="sliderContentHeadline">
+                                                        <div class="headContainer">
+                                                            <div class="jenis">
+                                                                <p>JENIS</p>
+                                                            </div>
+                                                            <div class="waktu">
+
+                                                                <!-- untuk ini dikasi logic juga -->
+                                                                <p><?php echo date("l j F Y H:m:s"); ?></p>
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="tittleContainer">
+                                                            <h2>HEADLINE NOMOR <?= $i + 1; ?></h2>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="tittleContainer">
-                                                    <h2>HEADLINE JUDUL BERITA</h2>
-                                                </div>
-                                            </div>
-                                            <img id="slide-1" src="img/fungsi-fakta-dalam-berita.jpeg" alt="" />
-                                            <img id="slide-2" src="img/fungsi-fakta-dalam-berita.jpeg" alt="" />
-                                            <img id="slide-3" src="img/fungsi-fakta-dalam-berita.jpeg" alt="" />
+                                            <?php endfor; ?>
                                         </div>
+
+                                        <!-- slider nav -->
                                         <div class="slider-nav">
-                                            <a href="#slide-1"></a>
-                                            <a href="#slide-2"></a>
-                                            <a href="#slide-3"></a>
+                                            <?php for ($i = 0; $i < 5; $i++) : ?>
+
+                                                <a href="#slide-<?= $i; ?>"></a>
+
+                                            <?php endfor; ?>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
+
+
+                            <!-- berita daily -->
                             <tr class="content-beritaTerkini">
                                 <td colspan="3">
                                     <h2>BERITA TERKINI</h2>
@@ -157,7 +204,7 @@
 
                                         <?php while ($i < $result->num_rows) : ?>
                                             <?php
-                                                $berita = $result->fetch_object();
+                                            $berita = $result->fetch_object();
                                             ?>
                                             <div class="konten 1">
                                                 <div class="gmbrDailyNews">
