@@ -508,17 +508,47 @@ a:active {
     aspect-ratio: 16/9;
     width: 100%;
     height: 500px;
+    background-color: #eff0f6;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%, 0.25);
 }
 
-.slider img {
+.slider .imgCover {
     flex: 0 0 100%;
     height: 100%;
     object-fit: cover;
+    position: relative;
+    /* border: 1px solid red; */
 }
+
+.imgCover img {
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    background-position: center;
+}
+
+
+
+
+
+/* 
+#slide-1 {
+    background-color: lightgray;
+}
+
+#slide-2 {
+    background-color: yellow;
+}
+
+#slide-3 {
+    background-color: green;
+} */
+
 
 .slider img::before {
     box-shadow: inset 0 0 10px 5px rgba(0, 0, 0, 0.3);
@@ -558,7 +588,10 @@ a:active {
 }
 
 .vignetteLayer {
-    /* background-color: white; */
+    background-color: lightslategray;
+    opacity: 0.3;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     width: 100%;
     height: 25%;
     position: absolute;
@@ -571,9 +604,9 @@ a:active {
         inset 0 0 25px 25px rgba(0, 0, 0, 0);
 }
 
-.slider .sliderContentHeadline {
+.imgCover .sliderContentHeadline {
     /* border: 1px solid black; */
-    /* background-color: white; */
+    /* background-color: green; */
     position: absolute;
     margin-left: 10px;
     bottom: 0;
@@ -628,6 +661,7 @@ a:active {
 .tittleContainer h2 {
     margin-top: 10px;
     color: white;
+    font-size: 20px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.9);
 }
 
