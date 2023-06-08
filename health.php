@@ -149,10 +149,11 @@
                                         ?>
 
                                         <?php
-                                            if ($result->num_rows === 0)
+                                            if ($result->num_rows === 0) {
                                         ?>
                                             <h3>Belum Terdapat Berita Pada Jenis Berita Ini...</h3>
                                         <?php
+                                            }
                                         ?>
 
                                         <?php while ($i <= $result->num_rows) : ?>

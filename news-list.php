@@ -137,10 +137,11 @@
                                         ?>
 
                                         <?php
-                                            if ($result->num_rows === 0)
+                                            if ($result->num_rows === 0) {
                                         ?>
                                             <h3>Pencarian tidak ditemukan...</h3>
                                         <?php
+                                            }
                                         ?>
 
                                         <?php while ($i <= $result->num_rows) : ?>
