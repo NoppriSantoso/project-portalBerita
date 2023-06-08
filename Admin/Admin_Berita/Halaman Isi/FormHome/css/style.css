@@ -1,0 +1,32 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tdisi {
+  background-color: #6d3177;
+  border-radius: 35px;
+  color: #fefefe;
+  padding-left: 5%;
+  font-size: 15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tdheader {
+  background-color: #6d3177;
+  border-radius: 15px;
+  color: #fefefe;
+  padding-left: 5%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  padding: 2%;
+}
+
+.tblheader {
+  padding: 1%;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+}

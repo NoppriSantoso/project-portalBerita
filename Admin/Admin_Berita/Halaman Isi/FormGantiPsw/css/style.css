@@ -1,0 +1,67 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tblisi {
+  color: #000000;
+  border-color: #6d3177;
+  text-align: center;
+}
+
+.button1 {
+  color: #fefefe;
+  background-color: #6d3177;
+  border-radius: 15px;
+  width: 30%;
+  padding: 3%;
+  margin: 1%;
+}
+
+.dsntr {
+  height: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.tdbutton {
+  background-color: #cdcbcb;
+}
+
+.tblhead {
+  color: #fefefe;
+  background-color: #6d3177;
+  text-align: center;
+  font-size: 150%;
+  border-radius: 15px;
+}
+
+.dsninput {
+  height: 20px;
+}
+
+.button1:hover {
+  background-color: #01793e;
+  color: #000000;
+}
+
+.dsninput {
+  position: relative;
+}
+
+.button2 {
+  color: #fefefe;
+  background-color: #6d3177;
+  border-radius: 15px;
+  width: 30%;
+  padding: 3%;
+  margin: 1%;
+}
+
+.button2:hover {
+  background-color: #b41616;
+  color: #000000;
+}
+
+.buttons {
+  border: unset;
+  background-color: #fefefe;
+}

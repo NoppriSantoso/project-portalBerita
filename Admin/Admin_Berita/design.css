@@ -1,0 +1,61 @@
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+td.gambar {
+  height: 105px;
+}
+
+td.a {
+  height: 42px;
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  border-radius: 20px;
+}
+td.b {
+  text-align: center;
+  font-size: 20px;
+}
+td.c {
+  height: 40px;
+  text-align: center;
+  font-size: 30px;
+  background-color: #ad66b8;
+}
+
+td.NavbarKanan {
+  border-radius: 50px 50px 0px 0px;
+}
+
+td.NavbarKiri {
+  padding: 0px;
+}
+td.gambar {
+  padding: 0px;
+}
+table.listbutton {
+  width: 200px;
+  background-color: #874493;
+  height: 81%;
+}
+
+img {
+  background-color: rgb(255, 255, 255);
+  height: 105px;
+  width: 348px;
+}
+
+td.isi {
+  background-color: #cdcbcb;
+}
+
+iframe {
+  height: 403px;
+}
+
+td.a:hover {
+  background-color: white;
+  color: #874493;
+  border-radius: 20px;
+}
