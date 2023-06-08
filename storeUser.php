@@ -9,7 +9,7 @@
     $cpassword = $_POST['cpassword'];
 
     if ($password === $cpassword) {
-        $storePassword = hash('sha256', PASSWORD_BCRYPT);
+        $storePassword = hash('sha256', $password);
 
         $sql = "insert into tbl_login (username, password, email, role) values ('$username', '$storePassword', '$email', '$roleEnumUser')";
         $con->query($sql);
