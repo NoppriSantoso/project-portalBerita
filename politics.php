@@ -142,7 +142,7 @@
                                         <?php
                                             include 'jenisBeritaEnum.php';
 
-                                            $sql = "select * from tbl_berita where jenis_berita = '$jenisBeritaEnumPolitics' order by tgl_publish desc";
+                                            $sql = "select a.*, b.kode_author, b.nama_author from tbl_berita a join tbl_author b on a.kode_author = b.kode_author where jenis_berita = '$jenisBeritaEnumPolitics' order by tgl_publish desc";
                                             $result = $con->query($sql);
 
                                             $i = 1;

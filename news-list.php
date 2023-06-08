@@ -130,7 +130,7 @@
 
                                         <!-- disini kasik logic query -->
                                         <?php
-                                            $sql = "select * from tbl_berita where (judul_berita like '%$keyword%' or isi_berita like '%$keyword%' or jenis_berita like '%$keyword%') order by tgl_publish desc";
+                                            $sql = "select a.*, b.kode_author, b.nama_author from tbl_berita a join tbl_author b on a.kode_author = b.kode_author where (judul_berita like '%$keyword%' or isi_berita like '%$keyword%' or jenis_berita like '%$keyword%') order by tgl_publish desc";
                                             $result = $con->query($sql);
 
                                             $i = 1;
