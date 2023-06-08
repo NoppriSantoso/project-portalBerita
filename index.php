@@ -149,14 +149,14 @@
 
                                         <div class="slider">
                                             <?php
-                                                $sql = 'select * from tbl_berita order by rand() limit 5';
-                                                $result = $con->query($sql);
+                                            $sql = 'select * from tbl_berita order by rand() limit 5';
+                                            $result = $con->query($sql);
                                             ?>
                                             <?php for ($i = 1; $i <= $result->num_rows; $i++) : ?>
                                                 <?php
-                                                    $berita = $result->fetch_object();
+                                                $berita = $result->fetch_object();
                                                 ?>
-                                                <div class="imgCover" id="slide-<?= $i; ?>" onclick="location.href = 'pageBerita.php?idBerita=<?php echo $berita->id_berita?>'">
+                                                <div class="imgCover" id="slide-<?= $i; ?>" onclick="location.href = 'pageBerita.php?idBerita=<?php echo $berita->id_berita ?>'">
 
                                                     <img src="img/<?= $berita->gambar ?>" alt="">
 
@@ -200,15 +200,15 @@
 
                                         <!-- disini kasik logic query -->
                                         <?php
-                                            $sql = 'select a.*, b.kode_author, b.nama_author from tbl_berita a join tbl_author b on a.kode_author = b.kode_author order by tgl_publish desc';
-                                            $result = $con->query($sql);
+                                        $sql = 'select a.*, b.kode_author, b.nama_author from tbl_berita a join tbl_author b on a.kode_author = b.kode_author order by tgl_publish desc';
+                                        $result = $con->query($sql);
 
-                                            $i = 1;
+                                        $i = 1;
                                         ?>
 
                                         <?php while ($i <= $result->num_rows) : ?>
                                             <?php $berita = $result->fetch_object(); ?>
-                                            <div class="konten <?= $i ?>" onclick="location.href = 'pageBerita.php?idBerita=<?php echo $berita->id_berita?>'">
+                                            <div class="konten <?= $i ?>" onclick="location.href = 'pageBerita.php?idBerita=<?php echo $berita->id_berita ?>'">
                                                 <div class="gmbrDailyNews">
                                                     <img src="img/<?= $berita->gambar ?>" alt="<?= $berita->gambar ?>">
                                                 </div>
@@ -219,7 +219,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td class="judul row">
-                                                                <a href="pageBerita.php">
+                                                                <a href="pageBerita.php?idBerita=<?= $berita->id_berita ?>">
                                                                     <h3><?= $berita->judul_berita ?></h3>
                                                                 </a>
                                                             </td>
@@ -255,10 +255,10 @@
 
                                     <!-- disini kasik logic query -->
                                     <?php
-                                        $sql = 'select id_berita, judul_berita, popularity from tbl_berita order by popularity desc limit 10';
-                                        $result = $con->query($sql);
+                                    $sql = 'select id_berita, judul_berita, popularity from tbl_berita order by popularity desc limit 10';
+                                    $result = $con->query($sql);
 
-                                        $i = 0;
+                                    $i = 0;
                                     ?>
 
                                     <?php while ($i < $result->num_rows) : ?>
@@ -271,7 +271,7 @@
                                                 <table class="TableKontenBeritaPopuler" border="0" cellpadding="5" cellspacing="0">
                                                     <tr>
                                                         <td class="judul">
-                                                            <a href="pageBerita.php?idBerita=<?php echo $berita->id_berita?>">
+                                                            <a href="pageBerita.php?idBerita=<?php echo $berita->id_berita ?>">
                                                                 <h3><?= $berita->judul_berita ?></h3>
                                                             </a>
                                                         </td>
